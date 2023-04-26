@@ -1,4 +1,7 @@
 import receitasRoutes from "./receitasRoutes.js"
+import handleNotFound from "../util/handleNotFound.js";
+import handleError from "../util/handleError.js";
+import handleValidationError from "../util/handleValidationError.js";
 
 const routes = (app) => {
 
@@ -7,8 +10,10 @@ const routes = (app) => {
         res.send({resposta: "pong"}); // retorna os dados
     })
 
-    app.use(receitasRoutes)
-
+    app.use(receitasRoutes);
+    app.use(handleNotFound);
+    app.use(handleValidationError);
+    app.use(handleError);
 }
 
 export default routes; 
